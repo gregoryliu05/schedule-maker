@@ -13,7 +13,8 @@ public class Event {
     private int endMin;           // ending minute of the event
 
 
-    // REQUIRES: startingHour and endingHour <24, startingMinute and endingMinute <60
+    // REQUIRES: startingHour and endingHour <24, startingMinute and endingMinute <60,
+    // endHour >= startHour
     // EFFECTS: creates a new event with name, starting time and ending time
     public Event(String eventName, int startHour, int startMinute, int endHour, int endMinute) {
         this.eventName = eventName;
