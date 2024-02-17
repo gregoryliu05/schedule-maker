@@ -27,5 +27,6 @@ who have this problem as well.
 - As a user, I want to be able to **modify the length of an event I already put on the schedule**
 - As a user, I want to be able to **save recurring events to put on multiple schedules**
 - As a user, I want to be able to delete events from my schedule
+- As a user, I want to be able to change the name of my schedule
+- As a user, I want to be able to see my schedule and all the events on it
 
-An example of text with **bold** and *italic* fonts.  

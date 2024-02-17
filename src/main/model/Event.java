@@ -3,7 +3,7 @@ package model;
 import java.time.LocalTime;
 
 // Represents an event in a schedule, with a start and end time, and an event name
-public class Event {
+public class Event implements Comparable<Event> {
     private String eventName;     // name of the event
     private LocalTime startTime;  // starting time of the event
     private int startHour;        // starting hour of the event
@@ -18,26 +18,26 @@ public class Event {
     // EFFECTS: creates a new event with name, starting time and ending time
     public Event(String eventName, int startHour, int startMinute, int endHour, int endMinute) {
         this.eventName = eventName;
-        this.startTime = LocalTime.of(this.startHour, this.startMin);
         this.startHour = startHour;
         this.startMin = startMinute;
-        this.endTime = LocalTime.of(this.endHour, this.endMin);
+        this.startTime = LocalTime.of(this.startHour, this.startMin);
         this.endHour = endHour;
         this.endMin = endMinute;
+        this.endTime = LocalTime.of(this.endHour, this.endMin);
     }
 
     public  void setEventName(String eventName) {
         this.eventName = eventName;
     }
 
-    public void setStartTime(int startingHour, int startingMinute) {
-        this.startHour = startingHour;
-        this.startMin = startingMinute;
+    public void setStartTime(int startHour, int startMinute) {
+        this.startHour = startHour;
+        this.startMin = startMinute;
         this.startTime = LocalTime.of(this.startHour,this.startMin);
 
     }
-    public void setStartMinute(int startingMinute) {
-        this.startMin = startingMinute;
+    public void setStartMinute(int startMinute) {
+        this.startMin = startMinute;
         this.startTime = LocalTime.of(this.startHour, this.startMin);
 
     }
@@ -89,6 +89,11 @@ public class Event {
 
     public int getEndMin() {
         return this.endMin;
+    }
+
+    @Override
+    public int compareTo(Event other) {
+        return this.startTime.compareTo(other.startTime);
     }
 
 
