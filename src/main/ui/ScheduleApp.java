@@ -1,4 +1,5 @@
 package ui;
+
 import model.Event;
 import model.Schedule;
 import java.util.List;
@@ -8,19 +9,20 @@ import java.util.Scanner;
 // Schedule application
 public class ScheduleApp {
     private Schedule schedule;
-    private List<Event> savedEvents;
     private Scanner input;
 
     // EFFECTS: runs the schedule application
-    public ScheduleApp() { runSchedule(); }
+    public ScheduleApp() {
+        runSchedule();
+    }
 
 
     private void runSchedule() {
         boolean keepRunning = true;
-        String command = null;
+        String command;
 
         schedule = new Schedule("");
-        savedEvents = new ArrayList<>();
+        List<Event> savedEvents = new ArrayList<>();
         input  = new Scanner(System.in);
 
         while (keepRunning) {
@@ -55,7 +57,7 @@ public class ScheduleApp {
     private void scheduleScreen() {
         scheduleScreenDisplay();
         input  = new Scanner(System.in);
-        String command = null;
+        String command;
         command = input.next();
         command = command.toLowerCase();
         if (command.equals("e")) {
@@ -64,8 +66,13 @@ public class ScheduleApp {
             removeEvent();
         } else if (command.equals("v")) {
             showSchedule();
+        } else if (command.equals("n")) {
+            changeScheduleName();
         } else if (command.equals("q")) {
             System.out.println("Closed app!");
+        } else {
+            System.out.println("typed invalid command, try again");
+            scheduleScreen();
         }
     }
 
@@ -74,6 +81,7 @@ public class ScheduleApp {
         System.out.println("press e to create a new event to add to the schedule");
         System.out.println("press r to remove an event from the schedule");
         System.out.println("press v to view schedule");
+        System.out.println("press n to change name of the schedule");
         System.out.println("press q to exit");
 
     }
@@ -106,10 +114,19 @@ public class ScheduleApp {
         System.out.println("type the name of the event listed below you want to remove");
         System.out.println(names);
         String output = input.nextLine();
-        schedule.removeEvent(output);
-        System.out.println("Successfully removed event!");
+        checkEvent(schedule.removeEvent(output));
+
         scheduleScreen();
 
+    }
+
+    private void checkEvent(String name) {
+        if (name.equals("Success!")) {
+            System.out.println("Successfully removed event!");
+        } else {
+            System.out.println("you typed in the wrong event, please try again");
+            removeEvent();
+        }
     }
 
     private void showSchedule() {
@@ -126,6 +143,15 @@ public class ScheduleApp {
             System.out.println("closed app!");
         }
 
+
+    }
+
+    private void changeScheduleName() {
+        input = new Scanner(System.in);
+        System.out.println("enter the new name of the schedule");
+        schedule.setScheduleName(input.nextLine());
+        System.out.println("name change success!");
+        scheduleScreen();
 
     }
 

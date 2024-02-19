@@ -27,19 +27,24 @@ public class Schedule {
 
     //REQUIRES: events to not be empty, and for the event to be in the schedule
     //MODIFIES: this
-    //EFFECTS: removes an event from the schedule
-    public void removeEvent(String eventName) {
-        for (Event event: events){
+    //EFFECTS: takes an event name and returns success if it finds it and removes it, if not
+    // it returns failure
+    public String removeEvent(String eventName) {
+        for (Event event: events) {
             if (eventName.equals(event.getEventName())) {
                 this.events.remove(event);
+                return "Success!";
             }
         }
+        return "Failure";
     }
 
 
     public List getEvents() {
         return this.events;
     }
+
+    // EFFECTS: gets the names of all the events
     public List getEventNames() {
         List names = new ArrayList();
         for (Event event: events) {
@@ -58,23 +63,24 @@ public class Schedule {
         this.scheduleName = name;
     }
 
+
+    // EFFECTS: prints the schedule in 24hr time with the schedule name at the top
     public void printSchedule() {
         System.out.println(scheduleName);
-        for (int i = 0; i<24; i++) {
-            System.out.println(i +":00");
+        for (int i = 0; i < 24; i++) {
             for (Event event: events) {
-                if (event.getStartHour() == i) {
-                    System.out.println(event.getStartTime() + ": "+ event.getEventName() + " starts");
+                if (event.getStartHour() == i && event.getStartMin() == 0) {
+                    System.out.println(event.getStartTime() + ": " + event.getEventName() + " starts");
+                } else if (event.getStartHour() == i)  {
+                    System.out.println(i + ":00");
+                    System.out.println(event.getEndTime() + ": " + event.getEventName() + " ends");
+                } else if (event.getEndHour() == i) {
+                    System.out.println(event.getEndTime() + ": " + event.getEventName() + " ends");
+                } else {
+                    System.out.println(i + ":00");
                 }
             }
-            for (Event event: events) {
-                if (event.getEndHour() == i) {
-                    System.out.println(event.getEndTime() + ": "+ event.getEventName() + " ends");
-                }
-            }
-
         }
     }
-
 
 }

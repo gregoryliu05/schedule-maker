@@ -14,7 +14,7 @@ public class Event implements Comparable<Event> {
 
 
     // REQUIRES: startingHour and endingHour <24, startingMinute and endingMinute <60,
-    // endHour >= startHour
+    // endTime has to be a time after starting time
     // EFFECTS: creates a new event with name, starting time and ending time
     public Event(String eventName, int startHour, int startMinute, int endHour, int endMinute) {
         this.eventName = eventName;
@@ -30,17 +30,20 @@ public class Event implements Comparable<Event> {
         this.eventName = eventName;
     }
 
+
     public void setStartTime(int startHour, int startMinute) {
         this.startHour = startHour;
         this.startMin = startMinute;
         this.startTime = LocalTime.of(this.startHour,this.startMin);
 
     }
+
     public void setStartMinute(int startMinute) {
         this.startMin = startMinute;
         this.startTime = LocalTime.of(this.startHour, this.startMin);
 
     }
+
     public void setStartHour(int startingHour) {
         this.startHour = startingHour;
         this.startTime = LocalTime.of(this.startHour, this.startMin);
@@ -53,11 +56,13 @@ public class Event implements Comparable<Event> {
         this.endTime = LocalTime.of(this.endHour,this.endMin);
 
     }
+
     public void setEndMinute(int endMinute) {
         this.endMin = endMinute;
         this.endTime = LocalTime.of(this.endHour, this.endMin);
 
     }
+
     public void setEndHour(int endHour) {
         this.endHour = endHour;
         this.endTime = LocalTime.of(this.endHour, this.endMin);
@@ -75,6 +80,7 @@ public class Event implements Comparable<Event> {
     public int getStartHour() {
         return this.startHour;
     }
+
     public int getStartMin() {
         return this.startMin;
     }
