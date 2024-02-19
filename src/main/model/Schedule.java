@@ -74,8 +74,8 @@ public class Schedule {
             for (Event event: events) {
                 if (event.getStartHour() == i) {
                     System.out.println(event.getStartTime() + ": " + event.getEventName() + " starts");
-                    printedSchedule = printedSchedule +
-                            event.getStartTime() + ": " + event.getEventName() + " starts\n";
+                    printedSchedule = printedSchedule
+                            + event.getStartTime() + ": " + event.getEventName() + " starts\n";
                 } else if (event.getEndHour() == i) {
                     System.out.println(event.getEndTime() + ": " + event.getEventName() + " ends");
                     printedSchedule = printedSchedule
