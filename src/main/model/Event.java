@@ -26,11 +26,12 @@ public class Event implements Comparable<Event> {
         this.endTime = LocalTime.of(this.endHour, this.endMin);
     }
 
+    //EFFECTS: changes the name of the event
     public void setEventName(String eventName) {
         this.eventName = eventName;
     }
 
-
+    //EFFECTS: changes the starting time of the event
     public void setStartTime(int startHour, int startMinute) {
         this.startHour = startHour;
         this.startMin = startMinute;
@@ -38,18 +39,21 @@ public class Event implements Comparable<Event> {
 
     }
 
+    //EFFECTS: changes the starting minute of the event
     public void setStartMinute(int startMinute) {
         this.startMin = startMinute;
         this.startTime = LocalTime.of(this.startHour, this.startMin);
 
     }
 
+    //EFFECTS: changes the starting hour of the event
     public void setStartHour(int startingHour) {
         this.startHour = startingHour;
         this.startTime = LocalTime.of(this.startHour, this.startMin);
 
     }
 
+    //EFFECTS: changes the ending time of the event
     public void setEndTime(int endHour, int endMinute) {
         this.endHour = endHour;
         this.endMin = endMinute;
@@ -57,12 +61,14 @@ public class Event implements Comparable<Event> {
 
     }
 
+    //EFFECTS: changes the ending minute of the event
     public void setEndMinute(int endMinute) {
         this.endMin = endMinute;
         this.endTime = LocalTime.of(this.endHour, this.endMin);
 
     }
 
+    //EFFECTS: changes the ending hour of the event
     public void setEndHour(int endHour) {
         this.endHour = endHour;
         this.endTime = LocalTime.of(this.endHour, this.endMin);

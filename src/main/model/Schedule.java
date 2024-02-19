@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.ArrayList;
 
 // represents a schedule with a list of events and a name
+// method printSchedule inspired by printBookingsList in HairSalon App
+// https://github.students.cs.ubc.ca/CPSC210/Control-And-Data-Flow-Lecture-Starters.git
 public class Schedule {
     private List<Event> events;
     private String scheduleName;
@@ -39,7 +41,7 @@ public class Schedule {
         return "Failure";
     }
 
-
+    // EFFECTS: returns all the events in the schedule
     public List getEvents() {
         return this.events;
     }
@@ -53,12 +55,12 @@ public class Schedule {
         return names;
     }
 
-
+    // EFFECTS: gets the name of the schedule
     public String getScheduleName() {
         return this.scheduleName;
     }
 
-
+    // EFFECTS: sets the name of the schedule
     public void setScheduleName(String name) {
         this.scheduleName = name;
     }

@@ -6,7 +6,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-// Schedule application
+// Schedule application, UI partly inspired by TellerApp application
+// https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class ScheduleApp {
     private Schedule schedule;
     private Scanner input;

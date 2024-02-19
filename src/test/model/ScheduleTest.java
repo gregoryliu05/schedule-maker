@@ -124,7 +124,6 @@ public class ScheduleTest {
                 "22:00\n" +
                 "23:00\n", schedule1.printSchedule());
 
-
     }
 
 
