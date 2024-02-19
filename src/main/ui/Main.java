@@ -1,4 +1,5 @@
 package ui;
+
 import model.Event;
 import java.time.LocalTime;
 import model.Schedule;
