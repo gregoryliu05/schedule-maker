@@ -65,22 +65,25 @@ public class Schedule {
 
 
     // EFFECTS: prints the schedule in 24hr time with the schedule name at the top
-    public void printSchedule() {
-        System.out.println(scheduleName);
+    public String printSchedule() {
+        System.out.println("Schedule: " + scheduleName);
+        String printedSchedule = "";
         for (int i = 0; i < 24; i++) {
+            System.out.println(i + ":00");
+            printedSchedule = printedSchedule + i + ":00\n";
             for (Event event: events) {
-                if (event.getStartHour() == i && event.getStartMin() == 0) {
+                if (event.getStartHour() == i) {
                     System.out.println(event.getStartTime() + ": " + event.getEventName() + " starts");
-                } else if (event.getStartHour() == i)  {
-                    System.out.println(i + ":00");
-                    System.out.println(event.getEndTime() + ": " + event.getEventName() + " ends");
+                    printedSchedule = printedSchedule +
+                            event.getStartTime() + ": " + event.getEventName() + " starts\n";
                 } else if (event.getEndHour() == i) {
                     System.out.println(event.getEndTime() + ": " + event.getEventName() + " ends");
-                } else {
-                    System.out.println(i + ":00");
+                    printedSchedule = printedSchedule
+                            + event.getEndTime() + ": " + event.getEventName() + " ends\n";
                 }
             }
         }
+        return printedSchedule;
     }
 
 }

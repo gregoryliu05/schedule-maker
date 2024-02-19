@@ -26,7 +26,7 @@ public class Event implements Comparable<Event> {
         this.endTime = LocalTime.of(this.endHour, this.endMin);
     }
 
-    public  void setEventName(String eventName) {
+    public void setEventName(String eventName) {
         this.eventName = eventName;
     }
 

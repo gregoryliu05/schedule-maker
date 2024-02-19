@@ -51,11 +51,81 @@ public class ScheduleTest {
 
     }
 
+    @Test
+    void testSetScheduleName() {
+        schedule1.setScheduleName("hello");
+        assertEquals("hello", schedule1.getScheduleName());
+    }
 
 
+    @Test
+    void testGetEventNames() {
+        schedule1.addEvent(event1);
+        schedule1.addEvent(event2);
+        testList.add("event1");
+        testList.add("event2");
+        assertEquals(testList, schedule1.getEventNames());
+    }
+
+    @Test
+    void testPrintSchedule() {
+        assertEquals("0:00\n" +
+                "1:00\n" +
+                "2:00\n" +
+                "3:00\n" +
+                "4:00\n" +
+                "5:00\n" +
+                "6:00\n" +
+                "7:00\n" +
+                "8:00\n" +
+                "9:00\n" +
+                "10:00\n" +
+                "11:00\n" +
+                "12:00\n" +
+                "13:00\n" +
+                "14:00\n" +
+                "15:00\n" +
+                "16:00\n" +
+                "17:00\n" +
+                "18:00\n" +
+                "19:00\n" +
+                "20:00\n" +
+                "21:00\n" +
+                "22:00\n" +
+                "23:00\n", schedule1.printSchedule() );
+        schedule1.addEvent(event1);
+        schedule1.addEvent(event2);
+        assertEquals( "0:00\n" +
+                "1:00\n" +
+                "2:00\n" +
+                "3:00\n" +
+                "4:00\n" +
+                "5:00\n" +
+                "6:00\n" +
+                "7:00\n" +
+                "8:00\n" +
+                "9:00\n" +
+                "09:30: event1 starts\n" +
+                "10:00\n" +
+                "10:30: event1 ends\n" +
+                "11:00\n" +
+                "12:00\n" +
+                "13:00\n" +
+                "14:00\n" +
+                "15:00\n" +
+                "15:00: event2 starts\n" +
+                "16:00\n" +
+                "16:45: event2 ends\n" +
+                "17:00\n" +
+                "18:00\n" +
+                "19:00\n" +
+                "20:00\n" +
+                "21:00\n" +
+                "22:00\n" +
+                "23:00\n", schedule1.printSchedule());
 
 
-
+    }
 
 
 }
