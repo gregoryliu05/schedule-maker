@@ -1,5 +1,5 @@
 package ui;
-
+//TODO: DOCUMENTATION FOR THIS CLASS
 import model.Event;
 import model.Schedule;
 import java.util.List;
@@ -9,6 +9,7 @@ import java.util.Scanner;
 // Schedule application, UI partly inspired by TellerApp application
 // https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class ScheduleApp {
+    private static final String JSON_STORE = "./data/schedule.json";
     private Schedule schedule;
     private Scanner input;
 
@@ -105,7 +106,7 @@ public class ScheduleApp {
         event.setEndMinute(input.nextInt());
         input.nextLine();
         schedule.addEvent(event);
-        System.out.println("event successfuly added!");
+        System.out.println("event successfully added!");
         scheduleScreen();
     }
 
@@ -154,6 +155,14 @@ public class ScheduleApp {
         System.out.println("name change success!");
         scheduleScreen();
 
+    }
+
+    private void saveSchedule() {
+        //TODO
+    }
+
+    private void loadSchedule() {
+        //TODO
     }
 
 

@@ -29,4 +29,5 @@ who have this problem as well.
 - As a user, I want to be able to delete events from my schedule
 - As a user, I want to be able to change the name of my schedule
 - As a user, I want to be able to see my schedule and all the events on it
+- As a user, I want to have the option to save my schedule and modify it later
 
