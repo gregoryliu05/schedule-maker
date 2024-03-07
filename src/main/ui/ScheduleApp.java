@@ -2,6 +2,9 @@ package ui;
 //TODO: DOCUMENTATION FOR THIS CLASS
 import model.Event;
 import model.Schedule;
+import persistence.JsonReader;
+import persistence.JsonWriter;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,13 +15,14 @@ public class ScheduleApp {
     private static final String JSON_STORE = "./data/schedule.json";
     private Schedule schedule;
     private Scanner input;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // EFFECTS: runs the schedule application
     public ScheduleApp() {
         runSchedule();
     }
-
-
+    
     private void runSchedule() {
         boolean keepRunning = true;
         String command;

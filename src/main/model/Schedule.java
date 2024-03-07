@@ -1,6 +1,10 @@
 package model;
 
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.ArrayList;
@@ -8,7 +12,7 @@ import java.util.ArrayList;
 // represents a schedule with a list of events and a name
 // method printSchedule inspired by printBookingsList in HairSalon App
 // https://github.students.cs.ubc.ca/CPSC210/Control-And-Data-Flow-Lecture-Starters.git
-public class Schedule {
+public class Schedule implements Writable {
     private List<Event> events;
     private String scheduleName;
 
@@ -88,4 +92,22 @@ public class Schedule {
         return printedSchedule;
     }
 
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name",scheduleName);
+        json.put("events", eventsToJson());
+        return json;
+
+    }
+
+    // EFFECTS: returns events in this schedule as a JSON array
+    private JSONArray eventsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Event e: events) {
+            jsonArray.put(e.toJson());
+        }
+
+        return jsonArray;
+    }
 }
