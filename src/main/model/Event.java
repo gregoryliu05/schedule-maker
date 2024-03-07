@@ -1,12 +1,9 @@
 package model;
 
-import org.json.JSONObject;
-import persistence.Writable;
-
 import java.time.LocalTime;
 
 // Represents an event in a schedule, with a start and end time, and an event name
-public class Event implements Comparable<Event>, Writable {
+public class Event implements Comparable<Event> {
     private String eventName;     // name of the event
     private LocalTime startTime;  // starting time of the event
     private int startHour;        // starting hour of the event
@@ -111,12 +108,10 @@ public class Event implements Comparable<Event>, Writable {
         return this.startTime.compareTo(other.startTime);
     }
 
-    @Override
-    public JSONObject toJson() {
-        JSONObject json = new JSONObject();
-        json.put("name", eventName);
-        json.put("start time", startTime);
-        json.put("end time", endTime);
-        return json;
-    }
+
+
+
+
+
+
 }
