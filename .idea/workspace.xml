@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="75f8d005-4918-4388-bf6a-67c8950a5ef0" name="Changes" comment="fix">
+      <change beforePath="$PROJECT_DIR$/src/main/model/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/model/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/model/Schedule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/persistence/JsonWriter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/persistence/JsonWriter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/ui/ScheduleApp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/ui/ScheduleApp.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2bjnDPKHANth2GrHE660K940R4K" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/gregoryliu/Desktop/210/project_k5o7g/lib/spec&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/spec" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/spec" />
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.EventTest">
+    <configuration name="EventTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project-Starter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.EventTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventTest.testSetStartMinute" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project-Starter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.EventTest" />
+      <option name="METHOD_NAME" value="testSetStartMinute" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EventTest.testSetStartTime" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project-Starter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.EventTest" />
+      <option name="METHOD_NAME" value="testSetStartTime" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ScheduleTest.testPrintSchedule" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Project-Starter" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="model" />
+      <option name="MAIN_CLASS_NAME" value="model.ScheduleTest" />
+      <option name="METHOD_NAME" value="testPrintSchedule" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="json-20210307.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/lib/spec/json-20210307.jar" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.EventTest" />
+        <item itemvalue="JAR Application.json-20210307.jar" />
+        <item itemvalue="JUnit.EventTest.testSetStartMinute" />
+        <item itemvalue="JUnit.EventTest.testSetStartTime" />
+        <item itemvalue="JUnit.ScheduleTest.testPrintSchedule" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="75f8d005-4918-4388-bf6a-67c8950a5ef0" name="Changes" comment="" />
+      <created>1706737236904</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1706737236904</updated>
+    </task>
+    <task id="LOCAL-00001" summary="phase 0">
+      <created>1706862655923</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1706862655923</updated>
+    </task>
+    <task id="LOCAL-00002" summary="added all classes, created constructor for Event">
+      <created>1708068514600</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708068514600</updated>
+    </task>
+    <task id="LOCAL-00003" summary="finished constructor for event and all getters and setters">
+      <created>1708073334497</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1708073334497</updated>
+    </task>
+    <task id="LOCAL-00004" summary="completed schedule class with constructor and setters and getters">
+      <created>1708074242569</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708074242569</updated>
+    </task>
+    <task id="LOCAL-00005" summary="finished ScheduleApp in ui class, updated methods in Schedule class">
+      <created>1708159154787</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708159154787</updated>
+    </task>
+    <task id="LOCAL-00006" summary="added tests for Schedule and Event classes, changed printSchedule and removeEvent in Schedule, and updated UI in ScheduleApp class">
+      <created>1708327143905</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1708327143905</updated>
+    </task>
+    <task id="LOCAL-00007" summary="fixed checkstyle issue in main">
+      <created>1708327233927</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1708327233927</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added additional tests to cover all code branches">
+      <created>1708330359407</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1708330359407</updated>
+    </task>
+    <task id="LOCAL-00009" summary="fixed checkstyle error">
+      <created>1708330443553</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1708330443553</updated>
+    </task>
+    <task id="LOCAL-00010" summary="updated documentation and comments">
+      <created>1708331091561</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1708331091561</updated>
+    </task>
+    <task id="LOCAL-00011" summary="updated documentation, imported json and added json classes">
+      <created>1709763564668</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1709763564669</updated>
+    </task>
+    <task id="LOCAL-00012" summary="implemented JsonWriter class, added methods to Schedule, Event and ScheduleApp">
+      <created>1709777891499</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1709777891499</updated>
+    </task>
+    <task id="LOCAL-00013" summary="fix">
+      <created>1709778754691</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1709778754691</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix">
+      <created>1709778800010</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1709778800010</updated>
+    </task>
+    <task id="LOCAL-00015" summary="fix">
+      <created>1709778811543</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1709778811543</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="phase 0" />
+    <MESSAGE value="added all classes, created constructor for Event" />
+    <MESSAGE value="finished constructor for event and all getters and setters" />
+    <MESSAGE value="completed schedule class with constructor and setters and getters" />
+    <MESSAGE value="finished ScheduleApp in ui class, updated methods in Schedule class" />
+    <MESSAGE value="added tests for Schedule and Event classes, changed printSchedule and removeEvent in Schedule, and updated UI in ScheduleApp class" />
+    <MESSAGE value="fixed checkstyle issue in main" />
+    <MESSAGE value="added additional tests to cover all code branches" />
+    <MESSAGE value="fixed checkstyle error" />
+    <MESSAGE value="updated documentation and comments" />
+    <MESSAGE value="updated documentation, imported json and added json classes" />
+    <MESSAGE value="implemented JsonWriter class, added methods to Schedule, Event and ScheduleApp" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
+  </component>
+</project>
