@@ -7,7 +7,9 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.stream.Stream;
+import java.util.List;
 import model.Event;
 
 public class JsonReader {
@@ -19,12 +21,12 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads schedule from file and returns it;
+    // EFFECTS: reads schedules from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public Schedule read() throws IOException {
+    public List<Schedule> read() throws IOException {
         String jsonData = readFile(source);
-        JSONObject jsonObject = new JSONObject(jsonData);
-        return parseSchedule(jsonObject);
+        JSONArray jsonArray = new JSONArray(jsonData);
+        return parseSchedules(jsonArray);
         
     }
 
@@ -39,12 +41,17 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses schedule from jsonObject and returns it
-    private Schedule parseSchedule(JSONObject jsonObject) {
-        String name = jsonObject.getString("name");
-        Schedule s = new Schedule(name);
-        addEvents(s, jsonObject);
-        return s;
+    // EFFECTS: parses all schedules from jsonArray and returns it
+    private List<Schedule> parseSchedules(JSONArray jsonArray) {
+        List<Schedule> schedules = new ArrayList<>();
+        for (Object obj : jsonArray) {
+            JSONObject jsonObject = (JSONObject) obj;
+            String name = jsonObject.getString("name");
+            Schedule s = new Schedule(name);
+            addEvents(s, jsonObject);
+            schedules.add(s);
+        }
+        return schedules;
 
     }
 
@@ -60,7 +67,7 @@ public class JsonReader {
     }
 
     // MODIFIES: s
-    // EFFECTS: parses event from JSON object and adds it to workroom
+    // EFFECTS: parses event from JSON object and adds it to schedule
     private void addEvent(Schedule s, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Integer startHour = jsonObject.getInt("start hour");

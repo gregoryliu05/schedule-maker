@@ -3,6 +3,8 @@ package persistence;
 import model.Event;
 import model.Schedule;
 import org.json.JSONObject;
+import org.json.JSONArray;
+import java.util.List;
 
 import java.io.*;
 
@@ -25,10 +27,14 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of Schedule to file
-    public void write(Schedule s) {
-        JSONObject json = s.toJson();
-        saveToFile(json.toString(4));
+    // EFFECTS: writes JSON representation of Schedules to file
+    public void write(List<Schedule> schedules) {
+        JSONArray jsonArray = new JSONArray();
+        for (Schedule s : schedules) {
+            JSONObject json = s.toJson();
+            jsonArray.put(json);
+        }
+        saveToFile(jsonArray.toString(4));
     }
 
     // MODIFIES: this

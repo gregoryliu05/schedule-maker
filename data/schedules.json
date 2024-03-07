@@ -1,0 +1,26 @@
+[
+    {
+        "name": "3",
+        "events": [{
+            "end minute": 0,
+            "start minute": 30,
+            "end hour": 13,
+            "name": "ffdd",
+            "start hour": 12
+        }]
+    },
+    {
+        "name": "lolol",
+        "events": [{
+            "end minute": 0,
+            "start minute": 0,
+            "end hour": 2,
+            "name": "4949",
+            "start hour": 1
+        }]
+    },
+    {
+        "name": "hhhh",
+        "events": []
+    }
+]

@@ -1,5 +1,4 @@
 package ui;
-//TODO: DOCUMENTATION FOR THIS CLASS
 import model.Event;
 import model.Schedule;
 import persistence.JsonReader;
@@ -14,14 +13,17 @@ import java.util.Scanner;
 // Schedule application, UI partly inspired by TellerApp application
 // https://github.students.cs.ubc.ca/CPSC210/TellerApp
 public class ScheduleApp {
-    private static final String JSON_STORE = "./data/schedule.json";
-    private Schedule schedule;
+    private static final String JSON_STORE = "./data/schedules.json";
+    private List<Schedule> schedules;
+    private Schedule currentSchedule;
     private Scanner input;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
 
     // EFFECTS: runs the schedule application
     public ScheduleApp() throws FileNotFoundException {
+        currentSchedule = null;
+        schedules = new ArrayList<>();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runSchedule();
@@ -33,7 +35,6 @@ public class ScheduleApp {
         boolean keepRunning = true;
         String command;
 
-        schedule = new Schedule("");
         List<Event> savedEvents = new ArrayList<>();
         input  = new Scanner(System.in);
 
@@ -50,7 +51,7 @@ public class ScheduleApp {
             if (command.equals("l")) {
                 loadSchedule();
             }
-            if (command.equals("s")) {
+            if (command.equals("x")) {
                 saveSchedule();
             } if (command.equals("v")) {
                 showSchedule();
@@ -74,7 +75,9 @@ public class ScheduleApp {
     private void createNewSchedule() {
         input  = new Scanner(System.in);
         System.out.println("write a name for the schedule");
-        schedule.setScheduleName(input.nextLine());
+        currentSchedule = new Schedule("");
+        currentSchedule.setScheduleName(input.nextLine());
+        schedules.add(currentSchedule);
         scheduleScreen();
     }
 
@@ -94,7 +97,6 @@ public class ScheduleApp {
         } else if (command.equals("n")) {
             changeScheduleName();
         } else if (command.equals("q")) {
-            displayStartScreen();
         } else {
             System.out.println("typed invalid command, try again");
             scheduleScreen();
@@ -131,7 +133,7 @@ public class ScheduleApp {
         System.out.println("enter the ending minute of the event");
         event.setEndMinute(input.nextInt());
         input.nextLine();
-        schedule.addEvent(event);
+        currentSchedule.addEvent(event);
         System.out.println("event successfully added!");
         scheduleScreen();
     }
@@ -140,11 +142,11 @@ public class ScheduleApp {
     // EFFECTS: removes event given by user input
     private void removeEvent() {
         input = new Scanner(System.in);
-        List names = schedule.getEventNames();
+        List names = currentSchedule.getEventNames();
         System.out.println("type the name of the event listed below you want to remove");
         System.out.println(names);
         String output = input.nextLine();
-        checkEvent(schedule.removeEvent(output));
+        checkEvent(currentSchedule.removeEvent(output));
 
         scheduleScreen();
 
@@ -162,7 +164,7 @@ public class ScheduleApp {
 
     // EFFECTS: prints the schedule out to the user
     private void showSchedule() {
-        schedule.printSchedule();
+        currentSchedule.printSchedule();
         System.out.println("press b to go back to previous screen");
         System.out.println("press q to go back to starting screen");
         input  = new Scanner(System.in);
@@ -172,7 +174,6 @@ public class ScheduleApp {
         if (command.equals("b")) {
             scheduleScreen();
         } else if (command.equals("q")) {
-            displayStartScreen();
         }
 
 
@@ -183,19 +184,19 @@ public class ScheduleApp {
     private void changeScheduleName() {
         input = new Scanner(System.in);
         System.out.println("enter the new name of the schedule");
-        schedule.setScheduleName(input.nextLine());
+        currentSchedule.setScheduleName(input.nextLine());
         System.out.println("name change success!");
         scheduleScreen();
 
     }
 
-    // EFFECTS: saves the schedule to file
+    // EFFECTS: saves all the schedules to file
     private void saveSchedule() {
         try {
             jsonWriter.open();
-            jsonWriter.write(schedule);
+            jsonWriter.write(schedules);
             jsonWriter.close();
-            System.out.println("Saved " + schedule.getScheduleName() + " to " + JSON_STORE);
+            System.out.println("Saved " + currentSchedule.getScheduleName() + " to " + JSON_STORE);
 
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
@@ -209,12 +210,36 @@ public class ScheduleApp {
     // EFFECTS: loads the schedule from file
     private void loadSchedule() {
         try {
-            schedule = jsonReader.read();
-            System.out.println("Loaded " + schedule.getScheduleName() + " from " + JSON_STORE);
+            schedules = jsonReader.read();
+            List<String> names = new ArrayList<>();
+            for (Schedule s : schedules) {
+                names.add(s.getScheduleName());
+            }
+            System.out.println("type the name of the schedule you want to load:" + names);
+            setSchedule();
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
         }
         scheduleScreen();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: sets the current schedule
+    private void setSchedule() {
+        Scanner scanner = new Scanner(System.in);
+        String scheduleName = scanner.nextLine();
+        for (Schedule s: schedules) {
+            if (s.getScheduleName().equals(scheduleName)) {
+                currentSchedule = s;
+            }
+        }
+        if (currentSchedule !=null) {
+            System.out.println("Loaded " + currentSchedule.getScheduleName() + " from " + JSON_STORE);
+        }
+        else {
+            System.out.println("Schedule not found");
+            loadSchedule();
+        }
     }
 
 
