@@ -22,8 +22,9 @@ public class Schedule implements Writable {
 
     }
 
-    //MODIFIES: this
-    //EFFECTS: adds an event to the schedule and sorts them according to starting time
+    // REQUIRES: the time of the event added cannot overlap with any existing events
+    // MODIFIES: this
+    // EFFECTS: adds an event to the schedule and sorts them according to starting time
     public void addEvent(Event event) {
         this.events.add(event);
         Collections.sort(events);
@@ -95,7 +96,7 @@ public class Schedule implements Writable {
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
-        json.put("name",scheduleName);
+        json.put("name", scheduleName);
         json.put("events", eventsToJson());
         return json;
 

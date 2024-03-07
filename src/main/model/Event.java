@@ -115,8 +115,10 @@ public class Event implements Comparable<Event>, Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", eventName);
-        json.put("start time", startTime);
-        json.put("end time", endTime);
+        json.put("start hour", startHour);
+        json.put("start minute", startMin);
+        json.put("end hour", endHour);
+        json.put("end minute", endMin);
         return json;
     }
 }
