@@ -1,4 +1,5 @@
 package ui;
+
 import model.Event;
 import model.Schedule;
 import persistence.JsonReader;
@@ -37,7 +38,6 @@ public class ScheduleApp {
 
         List<Event> savedEvents = new ArrayList<>();
         input  = new Scanner(System.in);
-
         while (keepRunning) {
             displayStartScreen();
             command = input.next();
@@ -50,10 +50,9 @@ public class ScheduleApp {
             }
             if (command.equals("l")) {
                 loadSchedule();
-            }
-            if (command.equals("x")) {
+            } else if (command.equals("x")) {
                 saveSchedule();
-            } if (command.equals("v")) {
+            } else if (command.equals("v")) {
                 showSchedule();
             }
         }
@@ -96,7 +95,6 @@ public class ScheduleApp {
             showSchedule();
         } else if (command.equals("n")) {
             changeScheduleName();
-        } else if (command.equals("q")) {
         } else {
             System.out.println("typed invalid command, try again");
             scheduleScreen();
@@ -173,7 +171,6 @@ public class ScheduleApp {
         command = command.toLowerCase();
         if (command.equals("b")) {
             scheduleScreen();
-        } else if (command.equals("q")) {
         }
 
 
@@ -233,10 +230,9 @@ public class ScheduleApp {
                 currentSchedule = s;
             }
         }
-        if (currentSchedule !=null) {
+        if (currentSchedule != null) {
             System.out.println("Loaded " + currentSchedule.getScheduleName() + " from " + JSON_STORE);
-        }
-        else {
+        } else {
             System.out.println("Schedule not found");
             loadSchedule();
         }

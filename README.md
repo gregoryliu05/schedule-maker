@@ -23,11 +23,11 @@ I am able to solve this problem for myself and maybe for others
 who have this problem as well.
 ## User stories:
 - As a user, I want to be able to **add** an event to a schedule
-- As a user, I want to be able to **view all my saved schedules**
-- As a user, I want to be able to **modify the length of an event I already put on the schedule**
-- As a user, I want to be able to **save recurring events to put on multiple schedules**
 - As a user, I want to be able to delete events from my schedule
 - As a user, I want to be able to change the name of my schedule
 - As a user, I want to be able to see my schedule and all the events on it
 - As a user, I want to have the option to save my schedule and modify it later
+- As a user, I want to be able to load and access an old schedule I saved already
+- As a user, I want to be able to **modify the length of an event I already put on the schedule**
+- As a user, I want to be able to **save recurring events to put on multiple schedules**
 

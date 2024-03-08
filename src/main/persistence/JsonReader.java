@@ -12,6 +12,9 @@ import java.util.stream.Stream;
 import java.util.List;
 import model.Event;
 
+// JsonReader class, reads all data to json file
+// Class inspired by JsonWriter in JsonSerializationDemo
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonReader {
     private String source;
 
@@ -55,7 +58,7 @@ public class JsonReader {
 
     }
 
-    // MODIFIES: s
+    // MODIFIES: this
     // EFFECTS: parses events from JSON object and adds them to the schedule
     private void addEvents(Schedule s, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("events");
@@ -66,7 +69,7 @@ public class JsonReader {
 
     }
 
-    // MODIFIES: s
+    // MODIFIES: this
     // EFFECTS: parses event from JSON object and adds it to schedule
     private void addEvent(Schedule s, JSONObject jsonObject) {
         String name = jsonObject.getString("name");

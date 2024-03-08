@@ -10,6 +10,7 @@ import java.io.*;
 
 // Represents a writer that writes JSON representation of Schedule to file
 // Class inspired by JsonWriter in JsonSerializationDemo
+// https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git
 public class JsonWriter {
     private PrintWriter writer;
     private String destination;
@@ -39,7 +40,9 @@ public class JsonWriter {
 
     // MODIFIES: this
     // EFFECTS: closes writer
-    public void close() { writer.close(); }
+    public void close() {
+        writer.close();
+    }
 
     // MODIFIES: this
     // EFFECTS: writes string to file
