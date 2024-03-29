@@ -31,3 +31,14 @@ who have this problem as well.
 - As a user, I want to be able to **modify the length of an event I already put on the schedule**
 - As a user, I want to be able to **save recurring events to put on multiple schedules**
 
+# Instructions for Grader
+
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by 
+- clicking view schedule to see all event
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by adding an  
+- event through add event button
+- You can locate my visual component by clicking view schedule
+- You can save the state of my application by clicking save schedule
+- You can reload the state of my application by clicking load schedule and selecting a schedule to edit thats already
+- on file
+

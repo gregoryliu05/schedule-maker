@@ -106,6 +106,7 @@ public class Event implements Comparable<Event>, Writable {
         return this.endMin;
     }
 
+
     @Override
     public int compareTo(Event other) {
         return this.startTime.compareTo(other.startTime);

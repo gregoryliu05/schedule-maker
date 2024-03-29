@@ -47,7 +47,7 @@ public class Schedule implements Writable {
     }
 
     // EFFECTS: returns all the events in the schedule
-    public List getEvents() {
+    public List<Event> getEvents() {
         return this.events;
     }
 
