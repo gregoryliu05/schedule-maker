@@ -102,21 +102,23 @@ public class ScheduleApp extends JFrame {
 
     // EFFECTS: displays menu of options to user
     private void displayStartScreen() {
+        ImageIcon image = new ImageIcon("scheduleicon.png");
         Border border = BorderFactory.createLineBorder(Color.BLACK, 2);
         startingScreenPanel.setLayout(null);
         startingScreenPanel.setBorder(border);
         startingScreenPanel.setSize(750,750);
         JPanel infoPanel = new JPanel();
 
-        infoPanel.setSize(750, 50);
+        infoPanel.setSize(750, 300);
         JLabel scheduleNameLabel = new JLabel("Current Schedule: " + currentSchedule.getScheduleName());
-        scheduleNameLabel.setBounds(325, 10, 750,25);
+        scheduleNameLabel.setIcon(image);
+        //scheduleNameLabel.setBounds(325, 10, 300,300);
         infoPanel.add(scheduleNameLabel, 0);
-        infoPanel.setLayout(null);
+        infoPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         startingScreenPanel.add(infoPanel);
 
         buttonPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        buttonPanel.setBounds(0, 51, 500,500);
+        buttonPanel.setBounds(0, 301, 500,400);
 
         createStartingScreenButtons();
 
@@ -553,7 +555,7 @@ public class ScheduleApp extends JFrame {
         button.setText("go back");
         button.addActionListener(e -> cl.show(mainPanel, "Edit Schedule Panel"));
         removeEventPanel.add(button);
-}
+    }
 
 
 
