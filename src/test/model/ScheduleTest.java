@@ -10,15 +10,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ScheduleTest {
 
-    private Event event1;
-    private Event event2;
+    private ScheduleEvent scheduleEvent1;
+    private ScheduleEvent scheduleEvent2;
     private Schedule schedule1;
     private List testList;
 
     @BeforeEach
     void runBefore() {
-        event1 = new Event("event1", 9,30,10,30);
-        event2 = new Event("event2",15, 00,16,45);
+        scheduleEvent1 = new ScheduleEvent("event1", 9,30,10,30);
+        scheduleEvent2 = new ScheduleEvent("event2",15, 00,16,45);
         schedule1 = new Schedule("schedule1");
         testList = new ArrayList<>();
     }
@@ -30,20 +30,20 @@ public class ScheduleTest {
 
     @Test
     void testAddEvent() {
-        schedule1.addEvent(event1);
-        testList.add(event1);
+        schedule1.addEvent(scheduleEvent1);
+        testList.add(scheduleEvent1);
         assertEquals(schedule1.getEvents(),testList);
-        schedule1.addEvent(event2);
-        testList.add(event2);
+        schedule1.addEvent(scheduleEvent2);
+        testList.add(scheduleEvent2);
         assertEquals(schedule1.getEvents(),testList);
 
     }
 
     @Test
     void testRemoveEvent() {
-        schedule1.addEvent(event1);
+        schedule1.addEvent(scheduleEvent1);
         schedule1.removeEvent("event2");
-        testList.add(event1);
+        testList.add(scheduleEvent1);
         assertEquals(schedule1.getEvents(), testList);
         schedule1.removeEvent("event1");
         testList = new ArrayList<>();
@@ -60,8 +60,8 @@ public class ScheduleTest {
 
     @Test
     void testGetEventNames() {
-        schedule1.addEvent(event1);
-        schedule1.addEvent(event2);
+        schedule1.addEvent(scheduleEvent1);
+        schedule1.addEvent(scheduleEvent2);
         testList.add("event1");
         testList.add("event2");
         assertEquals(testList, schedule1.getEventNames());
@@ -93,8 +93,8 @@ public class ScheduleTest {
                 "21:00\n" +
                 "22:00\n" +
                 "23:00\n", schedule1.printSchedule() );
-        schedule1.addEvent(event1);
-        schedule1.addEvent(event2);
+        schedule1.addEvent(scheduleEvent1);
+        schedule1.addEvent(scheduleEvent2);
         assertEquals( "0:00\n" +
                 "1:00\n" +
                 "2:00\n" +

@@ -1,21 +1,21 @@
 [
     {
         "name": "schedule1",
-        "events": [{
+        "scheduleEvents": [{
             "end minute": 0,
             "start minute": 30,
             "end hour": 13,
-            "name": "event1",
+            "name": "scheduleEvent1",
             "start hour": 12
         }]
     },
     {
         "name": "schedule2",
-        "events": [{
+        "scheduleEvents": [{
             "end minute": 0,
             "start minute": 0,
             "end hour": 2,
-            "name": "event2",
+            "name": "scheduleEvent2",
             "start hour": 1
         }]
     }

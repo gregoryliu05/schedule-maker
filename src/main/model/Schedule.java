@@ -13,11 +13,11 @@ import java.util.ArrayList;
 // method printSchedule inspired by printBookingsList in HairSalon App
 // https://github.students.cs.ubc.ca/CPSC210/Control-And-Data-Flow-Lecture-Starters.git
 public class Schedule implements Writable {
-    private List<Event> events;
+    private List<ScheduleEvent> scheduleEvents;
     private String scheduleName;
 
     public Schedule(String scheduleName) {
-        this.events = new ArrayList<>();
+        this.scheduleEvents = new ArrayList<>();
         this.scheduleName = scheduleName;
 
     }
@@ -25,9 +25,12 @@ public class Schedule implements Writable {
     // REQUIRES: the time of the event added cannot overlap with any existing events
     // MODIFIES: this
     // EFFECTS: adds an event to the schedule and sorts them according to starting time
-    public void addEvent(Event event) {
-        this.events.add(event);
-        Collections.sort(events);
+    public void addEvent(ScheduleEvent scheduleEvent) {
+        this.scheduleEvents.add(scheduleEvent);
+        Collections.sort(scheduleEvents);
+        EventLog.getInstance().logEvent(
+                new Event("Added Event " + scheduleEvent.getEventName() + " To Schedule "
+                        + this.getScheduleName()));
 
 
     }
@@ -37,9 +40,10 @@ public class Schedule implements Writable {
     //EFFECTS: takes an event name and returns success if it finds it and removes it, if not
     // it returns failure
     public String removeEvent(String eventName) {
-        for (Event event: events) {
-            if (eventName.equals(event.getEventName())) {
-                this.events.remove(event);
+        for (ScheduleEvent scheduleEvent : scheduleEvents) {
+            if (eventName.equals(scheduleEvent.getEventName())) {
+                this.scheduleEvents.remove(scheduleEvent);
+                EventLog.getInstance().logEvent(new Event("Removed Event From Schedule"));
                 return "Success!";
             }
         }
@@ -47,15 +51,15 @@ public class Schedule implements Writable {
     }
 
     // EFFECTS: returns all the events in the schedule
-    public List<Event> getEvents() {
-        return this.events;
+    public List<ScheduleEvent> getEvents() {
+        return this.scheduleEvents;
     }
 
     // EFFECTS: gets the names of all the events
     public List getEventNames() {
         List names = new ArrayList();
-        for (Event event: events) {
-            names.add(event.getEventName());
+        for (ScheduleEvent scheduleEvent : scheduleEvents) {
+            names.add(scheduleEvent.getEventName());
         }
         return names;
     }
@@ -67,7 +71,9 @@ public class Schedule implements Writable {
 
     // EFFECTS: sets the name of the schedule
     public void setScheduleName(String name) {
+
         this.scheduleName = name;
+        EventLog.getInstance().logEvent(new Event("Set New Schedule Name of" + this.getScheduleName()));
     }
 
 
@@ -78,19 +84,24 @@ public class Schedule implements Writable {
         for (int i = 0; i < 24; i++) {
             System.out.println(i + ":00");
             printedSchedule = printedSchedule + i + ":00\n";
-            for (Event event: events) {
-                if (event.getStartHour() == i) {
-                    System.out.println(event.getStartTime() + ": " + event.getEventName() + " starts");
+            for (ScheduleEvent scheduleEvent : scheduleEvents) {
+                if (scheduleEvent.getStartHour() == i) {
+                    System.out.println(scheduleEvent.getStartTime() + ": " + scheduleEvent.getEventName() + " starts");
                     printedSchedule = printedSchedule
-                            + event.getStartTime() + ": " + event.getEventName() + " starts\n";
-                } else if (event.getEndHour() == i) {
-                    System.out.println(event.getEndTime() + ": " + event.getEventName() + " ends");
+                            + scheduleEvent.getStartTime() + ": " + scheduleEvent.getEventName() + " starts\n";
+                } else if (scheduleEvent.getEndHour() == i) {
+                    System.out.println(scheduleEvent.getEndTime() + ": " + scheduleEvent.getEventName() + " ends");
                     printedSchedule = printedSchedule
-                            + event.getEndTime() + ": " + event.getEventName() + " ends\n";
+                            + scheduleEvent.getEndTime() + ": " + scheduleEvent.getEventName() + " ends\n";
                 }
             }
         }
         return printedSchedule;
+    }
+
+    // EFFECTS: logs to the EventLog that the user viewed the schedule
+    public void viewSchedule() {
+        EventLog.getInstance().logEvent(new Event("Viewing Schedule " + this.getScheduleName()));
     }
 
     @Override
@@ -105,7 +116,7 @@ public class Schedule implements Writable {
     // EFFECTS: returns events in this schedule as a JSON array
     private JSONArray eventsToJson() {
         JSONArray jsonArray = new JSONArray();
-        for (Event e: events) {
+        for (ScheduleEvent e: scheduleEvents) {
             jsonArray.put(e.toJson());
         }
 

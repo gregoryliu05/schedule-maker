@@ -3,7 +3,6 @@ package persistence;
 import model.*;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,12 +49,12 @@ public class JsonWriterTest {
         try {
             List<Schedule> schedules = new ArrayList<>();
             Schedule schedule1 = new Schedule("schedule1");
-            Event event1 = new Event("event1", 12,30,13,0);
-            schedule1.addEvent(event1);
+            ScheduleEvent scheduleEvent1 = new ScheduleEvent("event1", 12,30,13,0);
+            schedule1.addEvent(scheduleEvent1);
 
             Schedule schedule2 = new Schedule("schedule2");
-            Event event2 = new Event("event2", 1,0,2,0);
-            schedule2.addEvent(event2);
+            ScheduleEvent scheduleEvent2 = new ScheduleEvent("event2", 1,0,2,0);
+            schedule2.addEvent(scheduleEvent2);
             schedules.add(schedule1);
             schedules.add(schedule2);
 
@@ -70,10 +69,10 @@ public class JsonWriterTest {
             schedule1 = schedules.get(0);
             assertEquals("schedule1", schedule1.getScheduleName());
             assertEquals(1, schedule1.getEvents().size());
-            List<Event> events = schedule1.getEvents();
-            event1 = events.get(0);
-            assertEquals("event1", event1.getEventName());
-            assertEquals(12, event1.getStartHour());
+            List<ScheduleEvent> scheduleEvents = schedule1.getEvents();
+            scheduleEvent1 = scheduleEvents.get(0);
+            assertEquals("event1", scheduleEvent1.getEventName());
+            assertEquals(12, scheduleEvent1.getStartHour());
 
         } catch (IOException e) {
             fail("Exception should not have been thrown");

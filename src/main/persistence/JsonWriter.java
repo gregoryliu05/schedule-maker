@@ -1,6 +1,5 @@
 package persistence;
 
-import model.Event;
 import model.Schedule;
 import org.json.JSONObject;
 import org.json.JSONArray;

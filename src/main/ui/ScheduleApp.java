@@ -1,6 +1,8 @@
 package ui;
 
 import model.Event;
+import model.EventLog;
+import model.ScheduleEvent;
 import model.Schedule;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -8,6 +10,8 @@ import persistence.JsonWriter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -21,7 +25,6 @@ public class ScheduleApp extends JFrame {
     private static final String JSON_STORE = "./data/schedules.json";
     private List<Schedule> schedules;
     private Schedule currentSchedule;
-    private Scanner input;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
     private CardLayout cl;
@@ -40,9 +43,7 @@ public class ScheduleApp extends JFrame {
 
     // EFFECTS: runs the schedule application
     public ScheduleApp() throws FileNotFoundException {
-        currentSchedule = new Schedule("test");
-        currentSchedule.addEvent(new Event("test",1,30,2,30));
-        currentSchedule.addEvent(new Event("plz", 3,39,5,20));
+        currentSchedule = new Schedule("");
         schedules = new ArrayList<>();
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
@@ -97,6 +98,15 @@ public class ScheduleApp extends JFrame {
         this.setSize(750, 750);
         this.setTitle("Schedule App");
         this.setVisible(true);
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                EventLog eventLog = EventLog.getInstance();
+                for (Event event : eventLog) {
+                    System.out.println(event.toString());
+                }
+            }
+        });
 
     }
 
@@ -144,7 +154,7 @@ public class ScheduleApp extends JFrame {
 
 
         JButton viewScheduleButton = new JButton();
-        initButtonsForStartingScreens(viewScheduleButton, "View Schedule", "Schedule Screen Panel");
+        initViewScheduleButton(viewScheduleButton, "View Schedule", "Schedule Screen Panel");
         JButton editScheduleScreenButton = new JButton();
         initButtonsForStartingScreens(editScheduleScreenButton, "Modify Schedule", "Edit Schedule Panel");
 
@@ -160,6 +170,18 @@ public class ScheduleApp extends JFrame {
         button.addActionListener(e -> cl.show(mainPanel, navPath));
         buttonPanel.add(button);
 
+    }
+
+    // EFFECTS: helper function for viewScheduleButton
+    private void initViewScheduleButton(JButton button, String name, String navPath) {
+        button.setText(name);
+        button.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+        button.setSize(150, 100);
+        button.addActionListener(e -> {
+            cl.show(mainPanel, navPath);
+            currentSchedule.viewSchedule();
+        });
+        buttonPanel.add(button);
     }
 
     // MODIFIES: this
@@ -253,7 +275,14 @@ public class ScheduleApp extends JFrame {
     private void saveScheduleScreen() {
         JFrame saveFrame = new JFrame();
         try {
+
             jsonWriter.open();
+            for (Schedule s: schedules) {
+                if (s.getScheduleName().equals(currentSchedule.getScheduleName())) {
+                    schedules.remove(s);
+                }
+            }
+            schedules.add(currentSchedule);
             jsonWriter.write(schedules);
             jsonWriter.close();
             saveFrame.setSize(400,200);
@@ -310,7 +339,7 @@ public class ScheduleApp extends JFrame {
         JPanel eventPanel = new JPanel();
         eventPanel.setLayout(null);
         eventPanel.setBounds(110, 60, 640, 690);
-        for (Event e : currentSchedule.getEvents()) {
+        for (ScheduleEvent e : currentSchedule.getEvents()) {
             JPanel panel = new JPanel();
             panel.setLayout(null);
             panel.setBounds(0, 28 * e.getStartHour() + 28, 200, (e.getEndHour() - e.getStartHour()) * 28);
@@ -368,13 +397,33 @@ public class ScheduleApp extends JFrame {
 
         JButton removeEventButton = new JButton("Remove Event");
         constructButtons(removeEventButton, "Remove Event Panel");
+        removeEventButton.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+        removeEventButton.setSize(150, 100);
+        removeEventButton.addActionListener(e -> {
+            cl.show(mainPanel, "Remove Event Panel");
+            removeEventPanel.repaint();
+        });
+        scheduleButtonPanel.add(removeEventButton);
 
         JButton viewScheduleButton = new JButton("View Schedule");
-        constructButtons(viewScheduleButton, "Schedule Screen Panel");
+        initViewScheduleButtonForEdit(viewScheduleButton, "View Schedule", "Schedule Screen Panel");
 
         JButton backButton = new JButton("Go Back");
         constructButtons(backButton, "Starting Screen Panel");
 
+
+    }
+
+    // EFFECTS: initializes viewScheduleButton for scheduleButtonPanel
+    private void initViewScheduleButtonForEdit(JButton button, String name, String navPath) {
+        button.setText(name);
+        button.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 14));
+        button.setSize(150, 100);
+        button.addActionListener(e -> {
+            cl.show(mainPanel, navPath);
+            currentSchedule.viewSchedule();
+        });
+        scheduleButtonPanel.add(button);
 
     }
 
@@ -483,8 +532,9 @@ public class ScheduleApp extends JFrame {
             int startingMin = Integer.parseInt(startMinText.getText());
             int endHour = Integer.parseInt(endHrText.getText());
             int endingMin = Integer.parseInt(endMinText.getText());
-            Event event = new Event(name, startHour,startingMin,endHour,endingMin);
-            currentSchedule.addEvent(event);
+            ScheduleEvent scheduleEvent = new ScheduleEvent(name, startHour,startingMin,endHour,endingMin);
+            currentSchedule.addEvent(scheduleEvent);
+
             nameText.setText("");
             startHrText.setText("");
             startMinText.setText("");
@@ -528,6 +578,7 @@ public class ScheduleApp extends JFrame {
             resetName();
             updateScheduleScreen();
         });
+        addBackButtonRemoveEventPanel();
         removeEventPanel.add(label);
         removeEventPanel.add(textField);
         removeEventPanel.add(button);
@@ -538,7 +589,7 @@ public class ScheduleApp extends JFrame {
     // EFFECTS: lists out all the events in the remove event screen
     private void listAllEvents() {
         JPanel eventsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        for (Event e: currentSchedule.getEvents()) {
+        for (ScheduleEvent e: currentSchedule.getEvents()) {
             JLabel label = new JLabel(e.getEventName());
             label.setVisible(true);
             eventsPanel.add(label);

@@ -1,5 +1,6 @@
 package persistence;
 
+import model.ScheduleEvent;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import model.Schedule;
@@ -10,7 +11,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.stream.Stream;
 import java.util.List;
-import model.Event;
 
 // JsonReader class, reads all data to json file
 // Class inspired by JsonWriter in JsonSerializationDemo
@@ -77,7 +77,7 @@ public class JsonReader {
         Integer startMin = jsonObject.getInt("start minute");
         Integer endHour = jsonObject.getInt("end hour");
         Integer endMin = jsonObject.getInt("end minute");
-        Event e = new Event(name, startHour,startMin,endHour,endMin);
+        ScheduleEvent e = new ScheduleEvent(name, startHour,startMin,endHour,endMin);
         s.addEvent(e);
     }
 
